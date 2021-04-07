@@ -16,11 +16,11 @@ bot_put.add_argument("position", type=str, help="Position is invalid...", store_
 bot = {}
 def abort_if_not_exists(bot_id):
     if bot_id not in bot:
-        abort(404, message="Could not find employee...")
+        abort(404, message="Could not find bot...")
 
 def abort_if_exists(bot_id):
     if bot_id in bot:
-        abort(409, message="Employee already exists...")
+        abort(409, message="Bot already exists...")
 
 class Bots(Resource) :
     def get(self, bot_id):
@@ -33,7 +33,7 @@ class Bots(Resource) :
         bot[bot_id] = args
         return bot[bot_id], 201
 
-    def put(self, employee_id):   #Update bots with ID
+    def put(self, not_id):   #Update bots with ID
         abort_if_not_exists(bot_id)
         args = bot_put.parse_args()
         if "name" in args:
